@@ -35,6 +35,20 @@ Các chỉ số kỹ năng bị giới hạn trong khoảng 0–100. Lựa chọ
 scenario kế tiếp và làm thay đổi hội thoại sau đó thông qua trạng thái quan hệ.
 Khi hoàn tất toàn bộ catalog, game hiển thị summary rồi quay về menu.
 
+## Chơi lại tình huống từ thư viện
+
+```text
+Library card → chọn scenario ID
+  → giữ nguyên engine/save hiện tại
+  → tạo GameState tạm với chỉ số khởi đầu và scenario đã chọn
+  → chơi scenario, xem phản ứng và phân tích lựa chọn
+  → quay lại thư viện
+  → khôi phục engine và lựa chọn cũ
+```
+
+Lượt luyện tập độc lập, không ghi vào save khách hoặc snapshot tài khoản, không
+cộng điểm vào leaderboard và không thay đổi hồ sơ đang lưu.
+
 ## Tiến độ và hồ sơ tài khoản
 
 - Offline: `SaveManager` serialize `GameState` vào file save khách cục bộ.

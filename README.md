@@ -12,6 +12,9 @@ số kỹ năng, quan hệ nhân vật, lời thoại tiếp theo và kết qu�
   [`client/managers/intro_video_manager.py`](client/managers/intro_video_manager.py).
 - Sửa bố cục/nút trang chủ và thanh âm lượng:
   [`client/main.py`](client/main.py).
+- Sửa danh sách và cách replay tình huống:
+  `draw_library()`, `library_play:<scenario_id>` và
+  `finish_library_replay()` trong [`client/main.py`](client/main.py).
 - Xem chức năng từng file:
   [README_CODE.md](README_CODE.md).
 
@@ -23,6 +26,8 @@ số kỹ năng, quan hệ nhân vật, lời thoại tiếp theo và kết qu�
   quan hệ với quản lý, đồng nghiệp và khách hàng.
 - Màn hình kết quả cho biết phản ứng, phân tích, thay đổi chỉ số/quan hệ, XP
   và lịch sử quyết định.
+- Thư viện cho phép chọn chơi thử lại bất kỳ tình huống nào; lượt luyện tập
+  chạy độc lập, không ghi đè save, điểm hoặc thứ hạng.
 - Lưu tiến độ offline; đăng ký/đăng nhập và đồng bộ save tài khoản lên backend.
 - Bảng xếp hạng toàn server có phân trang và đánh dấu người chơi đang đăng nhập.
 - Hồ sơ, thống kê, thành tựu, cài đặt âm thanh, đổi ngôn ngữ Việt/Anh.

@@ -42,6 +42,12 @@ khởi động vòng lặp game bằng `python run.py`.
 6. Khi kết thúc scenario cuối, hiển thị summary và bộ đếm 8 giây; hết giờ quay
    về menu chính.
 
+Trong thư viện, `draw_library()` dựng các thẻ có thể bấm cho 15 tình huống.
+Action `library_play:<scenario_id>` lưu lại engine/lựa chọn hiện hành rồi tạo
+`GameState` mới để chạy riêng tình huống được chọn. Khi replay, xử lý lựa chọn
+bỏ qua thao tác ghi save và màn kết quả đưa người chơi về thư viện;
+`finish_library_replay()` khôi phục nguyên phiên chơi trước đó.
+
 Vòng lặp chính có dạng:
 
 ```text
@@ -258,7 +264,7 @@ không phải nơi đang triển khai màn hình hay API client: UI đang tập 
 
 | File | Chức năng |
 |---|---|
-| `client/main.py` | Lớp `OfficeLifeApp`: khởi tạo game, điều phối màn hình, vẽ nút/chữ/chỉ số, xử lý input, form đăng nhập/đăng ký, lưu game, thông báo, hồ sơ, leaderboard và vòng lặp Pygame. `draw_video_audio_controls()` giữ nút loa nhỏ ở góc clip và fade thanh âm lượng khi hover; `set_video_volume_from_mouse()` xử lý kéo thanh; `close()` dọn tài nguyên. Hàm `main()` là điểm vào ứng dụng. |
+| `client/main.py` | Lớp `OfficeLifeApp`: khởi tạo game, điều phối màn hình, vẽ nút/chữ/chỉ số, xử lý input, form đăng nhập/đăng ký, lưu game, thông báo, hồ sơ, leaderboard và vòng lặp Pygame. `draw_library()` tạo thẻ chọn replay; `finish_library_replay()` khôi phục session sau lượt luyện tập không lưu. `draw_video_audio_controls()` giữ nút loa nhỏ ở góc clip và fade thanh âm lượng khi hover; `set_video_volume_from_mouse()` xử lý kéo thanh; `close()` dọn tài nguyên. Hàm `main()` là điểm vào ứng dụng. |
 | `client/game/game_state.py` | `GameState`: lưu scenario hiện tại, bốn chỉ số, quan hệ nhân vật, lựa chọn, lịch sử/hậu quả, điểm, XP và thành tựu; áp dụng hiệu ứng, hoàn tất scenario và xác định ending. |
 | `client/game/branching_engine.py` | `Choice`, `Scenario`, `BranchingEngine`: nạp catalog JSON, lấy hội thoại theo quan hệ, kiểm tra lựa chọn, áp dụng hiệu ứng và chuyển nhánh. |
 | `client/managers/save_manager.py` | Serialize/deserialize `GameState`; đọc, ghi và đặt lại save khách local. |
@@ -301,7 +307,7 @@ không phải nơi đang triển khai màn hình hay API client: UI đang tập 
 |---|---|
 | `tests/conftest.py` | Cấu hình fixture kiểm thử và dọn database SQLite tạm sau test. |
 | `tests/test_api.py` | Kiểm tra health/đăng ký, quyền truy cập, schema/index/foreign key, MariaDB adapter/lỗi kết nối, migration account, hash mật khẩu, snapshot và API client. |
-| `tests/test_game_engine.py` | Kiểm tra nhánh game, chỉ số/quan hệ, dialogue variants, localization, âm thanh, giao diện menu/account/leaderboard, form chọn/xóa text và hiện/ẩn mật khẩu. |
+| `tests/test_game_engine.py` | Kiểm tra nhánh game, chỉ số/quan hệ, dialogue variants, localization, âm thanh, giao diện menu/account/leaderboard, replay tình huống không làm đổi save, form chọn/xóa text và hiện/ẩn mật khẩu. |
 | `tests/test_project_structure.py` | Kiểm tra các thư mục bắt buộc, số chapter/lựa chọn trong catalog và tính nhất quán key localization. |
 | `tests/__init__.py` | Đánh dấu thư mục test là package Python. |
 
