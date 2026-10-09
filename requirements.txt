@@ -1,0 +1,13 @@
+# pygame-ce provides the pygame-compatible wheel on current Python versions.
+pygame-ce>=2.5,<3
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+pydantic>=2.8,<3
+python-dotenv>=1.0,<2
+httpx>=0.27,<1
+imageio-ffmpeg>=0.6,<1
+PyMySQL>=1.1,<2
+passlib[bcrypt]>=1.7,<2
+python-jose[cryptography]>=3.3,<4
+supabase>=2.6,<3
+pytest>=8.0,<9
